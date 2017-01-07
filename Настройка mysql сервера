@@ -1,0 +1,44 @@
+http://stackoverflow.com/questions/5405236/jdbc-mysql-utf-8-string-writing-problem
+
+
+Ensure that your MySQL configuration encoding is defined correctly.
+Check your settings and the correctness of the modifications with these commands:
+
+show variables like 'character%';
+
+and show variables like 'collation%';
+
+Add these lines to either my.cnf or my.ini:
+
+For MySQL 5.1.nn, and later versions 5.5.29 you just need these two lines:
+
+
+vi  /etc/mysql/my.cnf
+
+
+сервер для развертывания приложений glassfish4.1
+
+
+[mysqld]
+character-set-server = utf8
+character-set-filesystem = utf8
+
+For MySQL 5.0.nn and older use these settings:
+
+[client]
+default-character-set=utf8
+
+
+[mysql]
+default-character-set=utf8
+
+
+[mysqld]
+default-character-set=utf8
+character-set-server=utf8
+
+
+
+Затем /etc/init.d/mysql restart
+
+
